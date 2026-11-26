@@ -37,6 +37,22 @@
         </field>
     </record>
 
+    <record id="market_listing_view_search" model="ir.ui.view">
+        <field name="name">market.listing.search</field>
+        <field name="model">market.listing</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="New" name="new" domain="[('condition', '=', 'new')]"/>
+                <filter string="Like New" name="like_new" domain="[('condition', '=', 'like_new')]"/>
+                <filter string="Used" name="used" domain="[('condition', '=', 'used')]"/>
+                <group>
+                    <filter string="Condition" name="group_by_condition" context="{'group_by': 'condition'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="market_listing_action" model="ir.actions.act_window">
         <field name="name">Listings</field>
         <field name="res_model">market.listing</field>
