@@ -12,6 +12,31 @@
         </field>
     </record>
 
+    <record id="market_listing_view_form" model="ir.ui.view">
+        <field name="name">market.listing.form</field>
+        <field name="model">market.listing</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Used bicycle"/></h1>
+                    </div>
+                    <group>
+                        <field name="price"/>
+                        <field name="condition"/>
+                        <field name="is_negotiable"/>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="market_listing_action" model="ir.actions.act_window">
         <field name="name">Listings</field>
         <field name="res_model">market.listing</field>
