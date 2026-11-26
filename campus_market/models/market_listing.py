@@ -16,3 +16,4 @@ class MarketListing(models.Model):
     is_negotiable = fields.Boolean(string="Negotiable")
     image = fields.Image(max_width=1024, max_height=1024)
     category_id = fields.Many2one("market.category")
+    tag_ids = fields.Many2many("market.tag")
