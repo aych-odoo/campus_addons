@@ -10,6 +10,7 @@
                 <field name="tag_ids" widget="many2many_tags"/>
                 <field name="price"/>
                 <field name="condition"/>
+                <field name="seller_id"/>
             </list>
         </field>
     </record>
@@ -30,6 +31,7 @@
                         <field name="price"/>
                         <field name="condition"/>
                         <field name="is_negotiable"/>
+                        <field name="seller_id"/>
                     </group>
                     <notebook>
                         <page string="Description">
