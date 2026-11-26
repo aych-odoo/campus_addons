@@ -2,5 +2,8 @@
 <odoo>
     <menuitem id="market_menu_root" name="Campus Marketplace">
         <menuitem id="market_listing_menu" name="Listings" action="market_listing_action"/>
+        <menuitem id="market_config_menu" name="Configuration">
+            <menuitem id="market_category_menu" name="Categories" action="market_category_action"/>
+        </menuitem>
     </menuitem>
 </odoo>
