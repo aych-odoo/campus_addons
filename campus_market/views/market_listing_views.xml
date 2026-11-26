@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="market_listing_view_list" model="ir.ui.view">
+        <field name="name">market.listing.list</field>
+        <field name="model">market.listing</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="price"/>
+                <field name="condition"/>
+            </list>
+        </field>
+    </record>
+
     <record id="market_listing_action" model="ir.actions.act_window">
         <field name="name">Listings</field>
         <field name="res_model">market.listing</field>
