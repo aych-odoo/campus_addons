@@ -5,6 +5,8 @@
     "depends": ["base"],
     "data": [
         "security/ir.access.csv",
+        "views/market_listing_views.xml",
+        "views/market_menus.xml",
     ],
     "application": True,
     "license": "LGPL-3",

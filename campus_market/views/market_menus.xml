@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="market_menu_root" name="Campus Marketplace">
+        <menuitem id="market_listing_menu" name="Listings" action="market_listing_action"/>
+    </menuitem>
+</odoo>
