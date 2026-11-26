@@ -8,3 +8,10 @@ class MarketListing(models.Model):
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
     price = fields.Float(string="Asking Price", required=True)
+    condition = fields.Selection([
+        ("new", "New"),
+        ("like_new", "Like New"),
+        ("used", "Used"),
+    ])
+    is_negotiable = fields.Boolean(string="Negotiable")
+    image = fields.Image(max_width=1024, max_height=1024)
