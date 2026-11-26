@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
+                <field name="category_id"/>
                 <field name="price"/>
                 <field name="condition"/>
             </list>
@@ -23,6 +24,7 @@
                         <h1><field name="name" placeholder="e.g. Used bicycle"/></h1>
                     </div>
                     <group>
+                        <field name="category_id"/>
                         <field name="price"/>
                         <field name="condition"/>
                         <field name="is_negotiable"/>
@@ -43,11 +45,13 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
+                <field name="category_id"/>
                 <filter string="New" name="new" domain="[('condition', '=', 'new')]"/>
                 <filter string="Like New" name="like_new" domain="[('condition', '=', 'like_new')]"/>
                 <filter string="Used" name="used" domain="[('condition', '=', 'used')]"/>
                 <group>
                     <filter string="Condition" name="group_by_condition" context="{'group_by': 'condition'}"/>
+                    <filter string="Category" name="group_by_category" context="{'group_by': 'category_id'}"/>
                 </group>
             </search>
         </field>
