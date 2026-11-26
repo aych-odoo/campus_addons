@@ -18,3 +18,4 @@ class MarketListing(models.Model):
     category_id = fields.Many2one("market.category")
     tag_ids = fields.Many2many("market.tag")
     seller_id = fields.Many2one("res.users", default=lambda self: self.env.user)
+    offer_ids = fields.One2many("market.offer", "listing_id")
