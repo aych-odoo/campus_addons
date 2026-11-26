@@ -2,3 +2,4 @@ id,name,model_id,group_id/id,operation,domain
 access_market_listing_user,market.listing.user,market.listing,base.group_user,crud,
 access_market_category_user,market.category.user,market.category,base.group_user,crud,
 access_market_tag_user,market.tag.user,market.tag,base.group_user,crud,
+access_market_offer_user,market.offer.user,market.offer,base.group_user,crud,
