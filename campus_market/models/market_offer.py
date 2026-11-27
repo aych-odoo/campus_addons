@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class MarketOffer(models.Model):
@@ -23,3 +23,16 @@ class MarketOffer(models.Model):
                 raise ValidationError(self.env._("You cannot make an offer on your own listing."))
             if not offer.listing_id.is_negotiable and offer.price < offer.listing_id.price:
                 raise ValidationError(self.env._("This listing is not negotiable: the offer must be at least the asking price."))
+
+    def action_accept(self):
+        for offer in self:
+            if offer.listing_id.state != "available":
+                raise UserError(self.env._("Only available listings can be sold."))
+            offer.listing_id.write({
+                "state": "sold",
+                "buyer_id": offer.partner_id.id,
+                "selling_price": offer.price,
+            })
+
+    def action_refuse(self):
+        self.unlink()

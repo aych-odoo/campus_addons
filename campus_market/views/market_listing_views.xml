@@ -50,6 +50,8 @@
                                 <list editable="bottom">
                                     <field name="partner_id"/>
                                     <field name="price"/>
+                                    <button name="action_accept" type="object" icon="check" title="Accept"/>
+                                    <button name="action_refuse" type="object" icon="close" title="Refuse"/>
                                 </list>
                             </field>
                         </page>
