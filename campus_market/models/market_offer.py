@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class MarketOffer(models.Model):
@@ -14,3 +15,11 @@ class MarketOffer(models.Model):
         "CHECK(price > 0)",
         "The offer price must be strictly positive.",
     )
+
+    @api.constrains("price", "listing_id")
+    def _check_offer(self):
+        for offer in self:
+            if offer.partner_id == offer.listing_id.seller_id.partner_id:
+                raise ValidationError(self.env._("You cannot make an offer on your own listing."))
+            if not offer.listing_id.is_negotiable and offer.price < offer.listing_id.price:
+                raise ValidationError(self.env._("This listing is not negotiable: the offer must be at least the asking price."))
