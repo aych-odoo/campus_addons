@@ -21,7 +21,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_cancel" string="Cancel" type="object"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state != 'available'"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -38,7 +38,7 @@
                         <field name="is_negotiable"/>
                         <field name="seller_id"/>
                     </group>
-                    <group string="Sale">
+                    <group string="Sale" invisible="state != 'sold'">
                         <field name="buyer_id"/>
                         <field name="selling_price"/>
                     </group>
@@ -47,12 +47,12 @@
                             <field name="description"/>
                         </page>
                         <page string="Offers">
-                            <field name="offer_ids">
+                            <field name="offer_ids" readonly="state != 'available'">
                                 <list editable="bottom">
                                     <field name="partner_id"/>
                                     <field name="price"/>
-                                    <button name="action_accept" type="object" icon="check" title="Accept"/>
-                                    <button name="action_refuse" type="object" icon="close" title="Refuse"/>
+                                    <button name="action_accept" type="object" icon="check" title="Accept" invisible="parent.state != 'available'"/>
+                                    <button name="action_refuse" type="object" icon="close" title="Refuse" invisible="parent.state != 'available'"/>
                                 </list>
                             </field>
                         </page>
