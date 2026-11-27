@@ -9,7 +9,7 @@ class MarketListing(models.Model):
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
-    price = fields.Float(string="Asking Price", required=True)
+    price = fields.Float(string="Asking Price", required=True, tracking=True)
     condition = fields.Selection([
         ("new", "New"),
         ("like_new", "Like New"),
@@ -26,7 +26,7 @@ class MarketListing(models.Model):
         ("available", "Available"),
         ("sold", "Sold"),
         ("cancelled", "Cancelled"),
-    ], default="available", readonly=True)
+    ], default="available", readonly=True, tracking=True)
     buyer_id = fields.Many2one("res.partner", readonly=True)
     selling_price = fields.Float(readonly=True)
 
