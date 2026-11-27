@@ -19,6 +19,8 @@ class MarketOffer(models.Model):
     @api.constrains("price", "listing_id")
     def _check_offer(self):
         for offer in self:
+            if offer.listing_id.state != "available":
+                raise ValidationError(self.env._("You cannot make an offer on a listing that is no longer available."))
             if offer.partner_id == offer.listing_id.seller_id.partner_id:
                 raise ValidationError(self.env._("You cannot make an offer on your own listing."))
             if not offer.listing_id.is_negotiable and offer.price < offer.listing_id.price:
