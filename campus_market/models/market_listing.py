@@ -45,3 +45,4 @@ class MarketListing(models.Model):
             if listing.state != "available":
                 raise UserError(self.env._("Only available listings can be cancelled."))
             listing.state = "cancelled"
+            listing.message_post(body=self.env._("This listing has been cancelled."))

@@ -35,6 +35,12 @@ class MarketOffer(models.Model):
                 "buyer_id": offer.partner_id.id,
                 "selling_price": offer.price,
             })
+            offer.listing_id.message_post(body=self.env._(
+                "Sold to %(buyer)s for %(price)s.",
+                buyer=offer.partner_id.name,
+                price=offer.price,
+            ))
+            offer.listing_id.message_subscribe(partner_ids=[offer.partner_id.id])
 
     def action_refuse(self):
         self.unlink()
