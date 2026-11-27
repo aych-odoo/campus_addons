@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class MarketListing(models.Model):
@@ -37,3 +38,9 @@ class MarketListing(models.Model):
     def _compute_best_offer(self):
         for listing in self:
             listing.best_offer = max(listing.offer_ids.mapped("price"), default=0.0)
+
+    def action_cancel(self):
+        for listing in self:
+            if listing.state != "available":
+                raise UserError(self.env._("Only available listings can be cancelled."))
+            listing.state = "cancelled"
