@@ -5,6 +5,7 @@ from odoo.exceptions import UserError
 class MarketListing(models.Model):
     _name = "market.listing"
     _description = "Marketplace Listing"
+    _inherit = ["mail.thread"]
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
