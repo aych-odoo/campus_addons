@@ -20,6 +20,13 @@ class MarketListing(models.Model):
     seller_id = fields.Many2one("res.users", default=lambda self: self.env.user)
     offer_ids = fields.One2many("market.offer", "listing_id")
     best_offer = fields.Float(compute="_compute_best_offer")
+    state = fields.Selection([
+        ("available", "Available"),
+        ("sold", "Sold"),
+        ("cancelled", "Cancelled"),
+    ], default="available", readonly=True)
+    buyer_id = fields.Many2one("res.partner", readonly=True)
+    selling_price = fields.Float(readonly=True)
 
     _check_price = models.Constraint(
         "CHECK(price > 0)",
