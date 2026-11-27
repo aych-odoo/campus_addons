@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class MarketListing(models.Model):
@@ -19,3 +19,9 @@ class MarketListing(models.Model):
     tag_ids = fields.Many2many("market.tag")
     seller_id = fields.Many2one("res.users", default=lambda self: self.env.user)
     offer_ids = fields.One2many("market.offer", "listing_id")
+    best_offer = fields.Float(compute="_compute_best_offer")
+
+    @api.depends("offer_ids.price")
+    def _compute_best_offer(self):
+        for listing in self:
+            listing.best_offer = max(listing.offer_ids.mapped("price"), default=0.0)
