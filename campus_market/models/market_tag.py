@@ -6,3 +6,8 @@ class MarketTag(models.Model):
     _description = "Marketplace Tag"
 
     name = fields.Char(required=True)
+
+    _name_uniq = models.Constraint(
+        "UNIQUE(name)",
+        "A tag with this name already exists.",
+    )

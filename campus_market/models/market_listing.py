@@ -21,6 +21,11 @@ class MarketListing(models.Model):
     offer_ids = fields.One2many("market.offer", "listing_id")
     best_offer = fields.Float(compute="_compute_best_offer")
 
+    _check_price = models.Constraint(
+        "CHECK(price > 0)",
+        "The asking price must be strictly positive.",
+    )
+
     @api.depends("offer_ids.price")
     def _compute_best_offer(self):
         for listing in self:

@@ -6,3 +6,8 @@ class MarketCategory(models.Model):
     _description = "Marketplace Category"
 
     name = fields.Char(required=True)
+
+    _name_uniq = models.Constraint(
+        "UNIQUE(name)",
+        "A category with this name already exists.",
+    )

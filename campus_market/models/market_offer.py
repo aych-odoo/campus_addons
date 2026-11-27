@@ -9,3 +9,8 @@ class MarketOffer(models.Model):
     partner_id = fields.Many2one("res.partner", string="Buyer", required=True)
     price = fields.Float(required=True)
     listing_id = fields.Many2one("market.listing", required=True)
+
+    _check_price = models.Constraint(
+        "CHECK(price > 0)",
+        "The offer price must be strictly positive.",
+    )
